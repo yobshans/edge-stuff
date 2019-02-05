@@ -1,17 +1,15 @@
-sudo yum install -y dhcp.x86_64
+yum install -y dhcp.x86_64
 
-sudo dhcrelay --no-pid 192.168.24.10  192.168.24.1
+dhcrelay --no-pid 192.168.24.10  192.168.24.1
 
-sudo iptables -I FORWARD -s 192.168.34.0/24 -d 192.168.24.0/24 -j ACCEPT    
-sudo iptables -I FORWARD -s 192.168.24.0/24 -d 192.168.34.0/24 -j ACCEPT         
-sudo iptables -I FORWARD -s 192.168.24.0/24 -d 192.168.44.0/24 -j ACCEPT         
-sudo iptables -I FORWARD -s 192.168.44.0/24 -d 192.168.24.0/24 -j ACCEPT
-sudo iptables -I FORWARD -j ACCEPT
+iptables -I FORWARD -s 192.168.34.0/24 -d 192.168.24.0/24 -j ACCEPT    
+iptables -I FORWARD -s 192.168.24.0/24 -d 192.168.34.0/24 -j ACCEPT         
+iptables -I FORWARD -s 192.168.24.0/24 -d 192.168.44.0/24 -j ACCEPT         
+iptables -I FORWARD -s 192.168.44.0/24 -d 192.168.24.0/24 -j ACCEPT
+iptables -I FORWARD -j ACCEPT
 
-sudo iptables -t nat -I POSTROUTING -s 192.168.44.0/24 ! -d 192.168.44.0/24 -j MASQUERADE
-sudo iptables -t nat -I POSTROUTING -s 192.168.34.0/24 ! -d 192.168.34.0/24 -j MASQUERADE
-
-
+iptables -t nat -I POSTROUTING -s 192.168.44.0/24 ! -d 192.168.44.0/24 -j MASQUERADE
+iptables -t nat -I POSTROUTING -s 192.168.34.0/24 ! -d 192.168.34.0/24 -j MASQUERADE
 
 ip link add link site-management name site.1188 type vlan id 1188
 ip a add 172.18.1.254/24 dev site.1188
