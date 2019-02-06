@@ -1,4 +1,5 @@
 #!/bin/bash
+source /home/stack/stackrc
 
 openstack overcloud deploy \
 --timeout 100 \
