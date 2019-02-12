@@ -22,11 +22,7 @@ sudo modprobe -r ifb
 sudo tc qdisc del dev dcn2-management root netem delay 100ms limit 15000000
 
 sudo tc -s qdisc show dev dcn1-data
-sudo tc -s qdisc show dev ifb0
 sudo tc -s qdisc show dev dcn2-data
-sudo tc -s qdisc show dev ifb1
 sudo tc -s qdisc show dev dcn1-management
-sudo tc -s qdisc show dev ifb2
 sudo tc -s qdisc show dev dcn2-management
-sudo tc -s qdisc show dev ifb3
 
